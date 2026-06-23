@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package nexus.protocol;
+
+option go_package = "github.com/awatansh/nexus/internal/protocol/proto";
+
+enum MessageType {
+  UNKNOWN = 0;
+
+  HELLO = 1;
+
+  PING = 2;
+  PONG = 3;
+
+  PEER_LIST = 4;
+
+  CHAT = 5;
+
+  SEARCH_REQUEST = 6;
+  SEARCH_RESPONSE = 7;
+
+  FILE_ANNOUNCE = 8;
+
+  FILE_REQUEST = 9;
+  FILE_CHUNK = 10;
+  FILE_COMPLETE = 11;
+}
+
+message Envelope {
+  string message_id = 1;
+
+  string sender_peer_id = 2;
+
+  int64 timestamp_ms = 3;
+
+  MessageType type = 4;
+
+  uint32 protocol_version = 5;
+
+  bytes payload = 6;
+
+  bytes signature = 7;
+}

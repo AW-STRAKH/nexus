@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package nexus.protocol;
+
+option go_package = "github.com/awatansh/nexus/internal/protocol/proto";
+
+message Hello {
+
+  string peer_id = 1;
+
+  string client_name = 2;
+
+  string client_version = 3;
+
+  uint32 protocol_version = 4;
+
+  repeated string capabilities = 5;
+}
