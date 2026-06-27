@@ -54,11 +54,18 @@ func (c *Connection) Receive(
 	buffer := make([]byte, 64*1024)
 
 	n, err := stream.Read(buffer)
+
+	// If we received bytes, return them even if the
+	// stream was closed afterwards (EOF).
+	if n > 0 {
+		return buffer[:n], nil
+	}
+
 	if err != nil {
 		return nil, err
 	}
 
-	return buffer[:n], nil
+	return nil, nil
 }
 
 func (c *Connection) Close() error {

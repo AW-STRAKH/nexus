@@ -16,3 +16,14 @@ message Hello {
 
   repeated string capabilities = 5;
 }
+
+message HelloAck {
+
+  string peer_id = 1;
+
+  string client_name = 2;
+
+  string client_version = 3;
+
+  repeated string capabilities = 4;
+}

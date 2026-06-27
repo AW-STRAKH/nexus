@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package nexus.protocol;
+
+option go_package = "github.com/awatansh/nexus/internal/protocol/proto";
+
+message Ping {
+
+  int64 timestamp_ms = 1;
+}
+
+message Pong {
+
+  int64 timestamp_ms = 1;
+}

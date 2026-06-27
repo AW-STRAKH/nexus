@@ -7,12 +7,11 @@
 package proto
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -27,16 +26,17 @@ type MessageType int32
 const (
 	MessageType_UNKNOWN         MessageType = 0
 	MessageType_HELLO           MessageType = 1
-	MessageType_PING            MessageType = 2
-	MessageType_PONG            MessageType = 3
-	MessageType_PEER_LIST       MessageType = 4
-	MessageType_CHAT            MessageType = 5
-	MessageType_SEARCH_REQUEST  MessageType = 6
-	MessageType_SEARCH_RESPONSE MessageType = 7
-	MessageType_FILE_ANNOUNCE   MessageType = 8
-	MessageType_FILE_REQUEST    MessageType = 9
-	MessageType_FILE_CHUNK      MessageType = 10
-	MessageType_FILE_COMPLETE   MessageType = 11
+	MessageType_HELLO_ACK       MessageType = 2
+	MessageType_PING            MessageType = 3
+	MessageType_PONG            MessageType = 4
+	MessageType_PEER_LIST       MessageType = 5
+	MessageType_CHAT            MessageType = 6
+	MessageType_SEARCH_REQUEST  MessageType = 7
+	MessageType_SEARCH_RESPONSE MessageType = 8
+	MessageType_FILE_ANNOUNCE   MessageType = 9
+	MessageType_FILE_REQUEST    MessageType = 10
+	MessageType_FILE_CHUNK      MessageType = 11
+	MessageType_FILE_COMPLETE   MessageType = 12
 )
 
 // Enum value maps for MessageType.
@@ -44,30 +44,32 @@ var (
 	MessageType_name = map[int32]string{
 		0:  "UNKNOWN",
 		1:  "HELLO",
-		2:  "PING",
-		3:  "PONG",
-		4:  "PEER_LIST",
-		5:  "CHAT",
-		6:  "SEARCH_REQUEST",
-		7:  "SEARCH_RESPONSE",
-		8:  "FILE_ANNOUNCE",
-		9:  "FILE_REQUEST",
-		10: "FILE_CHUNK",
-		11: "FILE_COMPLETE",
+		2:  "HELLO_ACK",
+		3:  "PING",
+		4:  "PONG",
+		5:  "PEER_LIST",
+		6:  "CHAT",
+		7:  "SEARCH_REQUEST",
+		8:  "SEARCH_RESPONSE",
+		9:  "FILE_ANNOUNCE",
+		10: "FILE_REQUEST",
+		11: "FILE_CHUNK",
+		12: "FILE_COMPLETE",
 	}
 	MessageType_value = map[string]int32{
 		"UNKNOWN":         0,
 		"HELLO":           1,
-		"PING":            2,
-		"PONG":            3,
-		"PEER_LIST":       4,
-		"CHAT":            5,
-		"SEARCH_REQUEST":  6,
-		"SEARCH_RESPONSE": 7,
-		"FILE_ANNOUNCE":   8,
-		"FILE_REQUEST":    9,
-		"FILE_CHUNK":      10,
-		"FILE_COMPLETE":   11,
+		"HELLO_ACK":       2,
+		"PING":            3,
+		"PONG":            4,
+		"PEER_LIST":       5,
+		"CHAT":            6,
+		"SEARCH_REQUEST":  7,
+		"SEARCH_RESPONSE": 8,
+		"FILE_ANNOUNCE":   9,
+		"FILE_REQUEST":    10,
+		"FILE_CHUNK":      11,
+		"FILE_COMPLETE":   12,
 	}
 )
 
@@ -203,22 +205,23 @@ const file_internal_protocol_proto_envelope_proto_rawDesc = "" +
 	"\x04type\x18\x04 \x01(\x0e2\x1b.nexus.protocol.MessageTypeR\x04type\x12)\n" +
 	"\x10protocol_version\x18\x05 \x01(\rR\x0fprotocolVersion\x12\x18\n" +
 	"\apayload\x18\x06 \x01(\fR\apayload\x12\x1c\n" +
-	"\tsignature\x18\a \x01(\fR\tsignature*\xc3\x01\n" +
+	"\tsignature\x18\a \x01(\fR\tsignature*\xd2\x01\n" +
 	"\vMessageType\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\t\n" +
-	"\x05HELLO\x10\x01\x12\b\n" +
-	"\x04PING\x10\x02\x12\b\n" +
-	"\x04PONG\x10\x03\x12\r\n" +
-	"\tPEER_LIST\x10\x04\x12\b\n" +
-	"\x04CHAT\x10\x05\x12\x12\n" +
-	"\x0eSEARCH_REQUEST\x10\x06\x12\x13\n" +
-	"\x0fSEARCH_RESPONSE\x10\a\x12\x11\n" +
-	"\rFILE_ANNOUNCE\x10\b\x12\x10\n" +
-	"\fFILE_REQUEST\x10\t\x12\x0e\n" +
+	"\x05HELLO\x10\x01\x12\r\n" +
+	"\tHELLO_ACK\x10\x02\x12\b\n" +
+	"\x04PING\x10\x03\x12\b\n" +
+	"\x04PONG\x10\x04\x12\r\n" +
+	"\tPEER_LIST\x10\x05\x12\b\n" +
+	"\x04CHAT\x10\x06\x12\x12\n" +
+	"\x0eSEARCH_REQUEST\x10\a\x12\x13\n" +
+	"\x0fSEARCH_RESPONSE\x10\b\x12\x11\n" +
+	"\rFILE_ANNOUNCE\x10\t\x12\x10\n" +
+	"\fFILE_REQUEST\x10\n" +
+	"\x12\x0e\n" +
 	"\n" +
-	"FILE_CHUNK\x10\n" +
-	"\x12\x11\n" +
-	"\rFILE_COMPLETE\x10\vB3Z1github.com/awatansh/nexus/internal/protocol/protob\x06proto3"
+	"FILE_CHUNK\x10\v\x12\x11\n" +
+	"\rFILE_COMPLETE\x10\fB3Z1github.com/awatansh/nexus/internal/protocol/protob\x06proto3"
 
 var (
 	file_internal_protocol_proto_envelope_proto_rawDescOnce sync.Once

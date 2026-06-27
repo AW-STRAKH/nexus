@@ -97,6 +97,74 @@ func (x *Hello) GetCapabilities() []string {
 	return nil
 }
 
+type HelloAck struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PeerId        string                 `protobuf:"bytes,1,opt,name=peer_id,json=peerId,proto3" json:"peer_id,omitempty"`
+	ClientName    string                 `protobuf:"bytes,2,opt,name=client_name,json=clientName,proto3" json:"client_name,omitempty"`
+	ClientVersion string                 `protobuf:"bytes,3,opt,name=client_version,json=clientVersion,proto3" json:"client_version,omitempty"`
+	Capabilities  []string               `protobuf:"bytes,4,rep,name=capabilities,proto3" json:"capabilities,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HelloAck) Reset() {
+	*x = HelloAck{}
+	mi := &file_internal_protocol_proto_hello_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HelloAck) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloAck) ProtoMessage() {}
+
+func (x *HelloAck) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_protocol_proto_hello_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloAck.ProtoReflect.Descriptor instead.
+func (*HelloAck) Descriptor() ([]byte, []int) {
+	return file_internal_protocol_proto_hello_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *HelloAck) GetPeerId() string {
+	if x != nil {
+		return x.PeerId
+	}
+	return ""
+}
+
+func (x *HelloAck) GetClientName() string {
+	if x != nil {
+		return x.ClientName
+	}
+	return ""
+}
+
+func (x *HelloAck) GetClientVersion() string {
+	if x != nil {
+		return x.ClientVersion
+	}
+	return ""
+}
+
+func (x *HelloAck) GetCapabilities() []string {
+	if x != nil {
+		return x.Capabilities
+	}
+	return nil
+}
+
 var File_internal_protocol_proto_hello_proto protoreflect.FileDescriptor
 
 const file_internal_protocol_proto_hello_proto_rawDesc = "" +
@@ -108,7 +176,13 @@ const file_internal_protocol_proto_hello_proto_rawDesc = "" +
 	"clientName\x12%\n" +
 	"\x0eclient_version\x18\x03 \x01(\tR\rclientVersion\x12)\n" +
 	"\x10protocol_version\x18\x04 \x01(\rR\x0fprotocolVersion\x12\"\n" +
-	"\fcapabilities\x18\x05 \x03(\tR\fcapabilitiesB3Z1github.com/awatansh/nexus/internal/protocol/protob\x06proto3"
+	"\fcapabilities\x18\x05 \x03(\tR\fcapabilities\"\x8f\x01\n" +
+	"\bHelloAck\x12\x17\n" +
+	"\apeer_id\x18\x01 \x01(\tR\x06peerId\x12\x1f\n" +
+	"\vclient_name\x18\x02 \x01(\tR\n" +
+	"clientName\x12%\n" +
+	"\x0eclient_version\x18\x03 \x01(\tR\rclientVersion\x12\"\n" +
+	"\fcapabilities\x18\x04 \x03(\tR\fcapabilitiesB3Z1github.com/awatansh/nexus/internal/protocol/protob\x06proto3"
 
 var (
 	file_internal_protocol_proto_hello_proto_rawDescOnce sync.Once
@@ -122,9 +196,10 @@ func file_internal_protocol_proto_hello_proto_rawDescGZIP() []byte {
 	return file_internal_protocol_proto_hello_proto_rawDescData
 }
 
-var file_internal_protocol_proto_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_internal_protocol_proto_hello_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_internal_protocol_proto_hello_proto_goTypes = []any{
-	(*Hello)(nil), // 0: nexus.protocol.Hello
+	(*Hello)(nil),    // 0: nexus.protocol.Hello
+	(*HelloAck)(nil), // 1: nexus.protocol.HelloAck
 }
 var file_internal_protocol_proto_hello_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -145,7 +220,7 @@ func file_internal_protocol_proto_hello_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_protocol_proto_hello_proto_rawDesc), len(file_internal_protocol_proto_hello_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
